@@ -509,7 +509,7 @@ const Navbar = ({ totalItems }) => {
                   </li>
                   <li>
                     <a
-                      href="/category/cat_VKXmwDbAX5rgDA"
+                      href="/category/cat_eN1ql9xnp5z3ym"
                       className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-gray-800"
                     >
                       Gaming Pc
@@ -561,7 +561,7 @@ const Navbar = ({ totalItems }) => {
                   </li>
                   <li>
                     <a
-                      href="/category/cat_LvJjoP6Bple0nO"
+                      href="/category/category/cat_gnZO5kZ06o7MNq"
                       className="dark:text-white flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-gray-800"
                     >
                       Gaming Accesories
