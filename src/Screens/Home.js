@@ -3,6 +3,7 @@ import CatSection from "../components/CatSection/catSection";
 import Banner from "../components/Banner/Banner";
 import BestSeller from "../components/BestSeller/BestSeller";
 import Featured from "../components/Featured/Featured";
+import Footer from "../components/Footer/Footer";
 
 const Home = ({ products, onAddToCart }) => {
   return (
@@ -15,6 +16,9 @@ const Home = ({ products, onAddToCart }) => {
         </p>
       </center>
       <Featured />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

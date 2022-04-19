@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Typography, Button, Grid } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import { SpinnerCircularSplit } from "spinners-react";
 
 import CartItem from "./CartItem/CartItem";
 import useStyles from "./styles";
@@ -23,7 +24,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
   if (!cart.line_items)
     return (
       <div className="flex justify-center items-center h-screen">
-        <SpinnerCircularSplit color="black" />
+        <SpinnerCircularSplit />
       </div>
     );
 
@@ -95,7 +96,7 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
                           Tax
                         </p>
                         <p className="text-base leading-none text-gray-800">
-                          $35
+                          $0
                         </p>
                       </div>
                     </div>
@@ -153,10 +154,6 @@ const Cart = ({ cart, onUpdateCartQty, onRemoveFromCart, onEmptyCart }) => {
 
   return (
     <Container>
-      <div className={classes.toolbar} />
-      <Typography className={classes.title} variant="h3" gutterBottom>
-        Your Shopping Cart
-      </Typography>
       {!cart.line_items.length ? renderEmptyCart() : renderCart()}
     </Container>
   );

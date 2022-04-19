@@ -386,8 +386,8 @@ const Navbar = ({ totalItems }) => {
             <div
               id="mobile-menu"
               className={`${
-                showMenu ? "flex" : "hidden"
-              } absolute dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex-col h-screen w-full`}
+                showMenu ? "flex transition-all duration-200" : "hidden"
+              } absolute transition-all duration-200 dark:bg-gray-900 z-10 inset-0 md:hidden bg-white flex-col h-screen w-full`}
             >
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <div className="flex items-center space-x-3">
