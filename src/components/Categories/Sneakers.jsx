@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "../../lib/commerce";
-import CategoryCard from "../Categorycard/CategoryCard";
+import SneakersCard from "../Categorycard/SneakersCard";
 import { SpinnerCircularSplit } from "spinners-react";
 import Grid from "@material-ui/core/Grid";
 
-const Laptops = ({ onAddToCart }) => {
-  const [laptops, setLaptops] = useState({});
-  const categoryId = "cat_LvJjoP6Bple0nO";
+const Sneakers = ({ onAddToCart }) => {
+  const [sneakers, setSneakers] = useState({});
+  const categoryId = "cat_8XO3wpAWxoYAzQ";
 
-  const fetchLaptops = async () => {
-    const result = await commerce.products.list({
+  const fetchSneakers = async () => {
+    const { data } = await commerce.products.list({
       category_id: categoryId,
     });
-    setLaptops(result.data);
+    setSneakers(data);
   };
 
-  useEffect(() => fetchLaptops(), []);
-
-  console.log(laptops);
-
-  if (!laptops.length)
+  useEffect(() => fetchSneakers(), []);
+  console.log(sneakers);
+  if (!sneakers?.length)
     return (
       <center>
         <div className="flex text-center justify-center items-center h-screen">
@@ -30,13 +28,13 @@ const Laptops = ({ onAddToCart }) => {
 
   return (
     <Grid style={{ marginTop: "40px" }} container justify="center" spacing={4}>
-      {laptops.map((laptop) => (
-        <div key={laptop.id}>
-          <CategoryCard onAddToCart={onAddToCart} laptop={laptop} />
+      {sneakers.map((sneaker) => (
+        <div key={sneaker.id}>
+          <SneakersCard onAddToCart={onAddToCart} sneaker={sneaker} />
         </div>
       ))}
     </Grid>
   );
 };
 
-export default Laptops;
+export default Sneakers;

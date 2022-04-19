@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { commerce } from "../../lib/commerce";
 import CatHoodies from "../Categorycard/CatHoodies";
 import { SpinnerCircular } from "spinners-react";
-
+import Grid from "@material-ui/core/Grid";
 const Hoodies = ({ onAddToCart }) => {
   const [hoodies, setHoodies] = useState({});
   const categoryId = "cat_VKXmwDbAX5rgDA";
@@ -30,13 +30,13 @@ const Hoodies = ({ onAddToCart }) => {
     );
 
   return (
-    <div>
+    <Grid style={{ marginTop: "40px" }} container justify="center" spacing={4}>
       {hoodies.map((hoodie) => (
         <div key={hoodie.id}>
           <CatHoodies onAddToCart={onAddToCart} hoodie={hoodie} />
         </div>
       ))}
-    </div>
+    </Grid>
   );
 };
 

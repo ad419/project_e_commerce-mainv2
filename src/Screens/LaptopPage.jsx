@@ -3,7 +3,7 @@ import Laptops from "../components/Categories/Laptops";
 
 const LaptopPage = ({ onAddToCart }) => {
   return (
-    <div className="flex">
+    <div>
       <Laptops onAddToCart={onAddToCart} />
     </div>
   );

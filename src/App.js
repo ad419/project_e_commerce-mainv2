@@ -11,6 +11,8 @@ import Accesors from "./Screens/Accesors";
 import LaptopPage from "./Screens/LaptopPage";
 import HoodiesPage from "./Screens/HoodiesPage";
 
+import SneakersPage from "./Screens/SneakersPage";
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
@@ -72,12 +74,12 @@ const App = () => {
     }
   };
 
-  console.log(products);
-
   useEffect(() => {
     fetchProducts();
     fetchCart();
   }, []);
+
+  console.log(products);
 
   return (
     <Router>
@@ -123,6 +125,10 @@ const App = () => {
         <Route path="/category/cat_gnZO5kZ06o7MNq">
           <Accesors onAddToCart={handleAddToCart} />
         </Route>
+        <Route path="/category/cat_8XO3wpAWxoYAzQ">
+          <SneakersPage onAddToCart={handleAddToCart} />
+        </Route>
+        <Route path="/category/:id"></Route>
       </Switch>
     </Router>
   );

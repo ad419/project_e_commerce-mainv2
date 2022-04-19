@@ -3,7 +3,7 @@ import Desktops from "../components/Categories/GamingPc";
 
 const DesktopPage = ({ onAddToCart }) => {
   return (
-    <div className="flex">
+    <div>
       <Desktops onAddToCart={onAddToCart} />
     </div>
   );

@@ -8,17 +8,20 @@ const ProductPage = ({ onAddToCart }) => {
 
   const fetchProduct = async (id) => {
     const response = await commerce.products.retrieve(id);
-    const { name, price, image, quantity, description, sku } = response;
+    const { name, price, assets, image, quantity, description, sku } = response;
     setProduct({
       id,
       name,
       sku,
       quantity,
+      assets,
       description,
       src: image.url,
       price: price.formatted_with_symbol,
     });
   };
+
+  console.log(product);
 
   useEffect(() => {
     const id = window.location.pathname.split("/");

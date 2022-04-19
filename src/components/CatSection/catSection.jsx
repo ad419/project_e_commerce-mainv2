@@ -12,6 +12,8 @@ const CatSection = () => {
     fetchCategories();
   }, []);
 
+  console.log(categories);
+
   return (
     <>
       <div className="pb-16">
@@ -32,14 +34,19 @@ const CatSection = () => {
                     key={category.id}
                     className="relative group flex justify-center items-center h-full w-full"
                   >
-                    <img
-                      className="object-center object-cover h-full w-full"
-                      src={category.assets.url}
-                      alt="girl-image"
-                    />
-                    <button className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 py-3 w-36 bg-white">
+                    <a href={`/category/${category.id}`}>
+                      <img
+                        className="object-center object-cover h-full w-full"
+                        src={category.assets[0]?.url}
+                        alt="girl-image"
+                      />
+                    </a>
+                    <a
+                      href={`/category/${category.id}`}
+                      className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 p-3 w-36 bg-white"
+                    >
                       {category.name}
-                    </button>
+                    </a>
                     <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
                   </div>
                 ))}

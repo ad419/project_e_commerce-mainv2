@@ -16,6 +16,7 @@ const Home = ({ products, onAddToCart }) => {
         </p>
       </center>
       <Featured />
+      <CatSection />
       <footer>
         <Footer />
       </footer>
