@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "../../lib/commerce";
 import { SpinnerCircular } from "spinners-react";
+import AwesomeSlider from "react-awesome-slider";
+import "react-awesome-slider/dist/styles.css";
 
 const ProductPage = ({ onAddToCart }) => {
   const [product, setProduct] = useState([]);
@@ -184,7 +186,13 @@ const ProductPage = ({ onAddToCart }) => {
 
           <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-9 sm:gap-6 gap-5">
             <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
-              <img src={product.src} alt="" />
+              <AwesomeSlider>
+                {product.assets.map((asset) => (
+                  <div>
+                    <img src={asset.url} alt="oke" />
+                  </div>
+                ))}
+              </AwesomeSlider>
             </div>
           </div>
         </div>
