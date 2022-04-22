@@ -1,11 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import SearchBar from "../../utils/SearchBar";
+import { FiSearch } from "react-icons/fi";
 import { commerce } from "../../lib/commerce";
+import { AiOutlineClose } from "react-icons/ai";
 
 const Navbar = ({ totalItems }) => {
   const [searchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [keyword, setKeyword] = useState("");
+  const [searchItems, setSearchItems] = useState([]);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const fetchSearchItems = async () => {
+    const { data } = await commerce.products.list({ query: keyword });
+
+    if (!data) {
+      setErrorMsg("No items found");
+    }
+
+    setSearchItems(data);
+  };
+
+  const handleInputChange = (event) => {
+    setKeyword(event.target.value);
+  };
+  console.log(errorMsg);
+  console.log(keyword);
+  console.log(searchItems);
 
   return (
     <>
@@ -184,6 +208,7 @@ const Navbar = ({ totalItems }) => {
                     </a>
                   </li>
                 </ul>
+
                 <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                   <div className="hidden lg:flex items-center">
                     <a
@@ -208,27 +233,30 @@ const Navbar = ({ totalItems }) => {
                     />
                   </div>
                   <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-                    <button
-                      aria-label="view favourites"
-                      className="text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-gray-800"
-                    >
-                      <svg
-                        className="fill-stroke"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20.8401 4.60987C20.3294 4.09888 19.7229 3.69352 19.0555 3.41696C18.388 3.14039 17.6726 2.99805 16.9501 2.99805C16.2276 2.99805 15.5122 3.14039 14.8448 3.41696C14.1773 3.69352 13.5709 4.09888 13.0601 4.60987L12.0001 5.66987L10.9401 4.60987C9.90843 3.57818 8.50915 2.99858 7.05012 2.99858C5.59109 2.99858 4.19181 3.57818 3.16012 4.60987C2.12843 5.64156 1.54883 7.04084 1.54883 8.49987C1.54883 9.95891 2.12843 11.3582 3.16012 12.3899L4.22012 13.4499L12.0001 21.2299L19.7801 13.4499L20.8401 12.3899C21.3511 11.8791 21.7565 11.2727 22.033 10.6052C22.3096 9.93777 22.4519 9.22236 22.4519 8.49987C22.4519 7.77738 22.3096 7.06198 22.033 6.39452C21.7565 5.72706 21.3511 5.12063 20.8401 4.60987V4.60987Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
+                    <button onClick={() => setShowSearch(true)}>
+                      <FiSearch
+                        size={26}
+                        className={`${showSearch ? "hidden" : "flex"}`}
+                      />
                     </button>
+                    <div className={`${showSearch ? "flex" : "hidden"}`}>
+                      <div className="flex space-x-2">
+                        <input
+                          className="px-2 text-lg rounded-full"
+                          onChange={handleInputChange}
+                          placeholder="search any product"
+                          type="text"
+                        />
+                        <button className="" onClick={fetchSearchItems}>
+                          <FiSearch size={26} />
+                        </button>
+                        <div>
+                          <button onClick={() => setShowSearch(false)}>
+                            <AiOutlineClose className="mt-1" size={26} />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                     <button
                       aria-label="go to cart"
                       className="text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-gray-800"
@@ -393,7 +421,7 @@ const Navbar = ({ totalItems }) => {
               <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
                 <div className="flex items-center space-x-3">
                   <div>
-                    <button>
+                    <button onClick={fetchSearchItems}>
                       <svg
                         className="fill-stroke text-gray-800 dark:text-white"
                         width={20}
@@ -421,6 +449,7 @@ const Navbar = ({ totalItems }) => {
                   </div>
                   <input
                     type="text"
+                    onChange={handleInputChange}
                     placeholder="Search for products"
                     className="text-sm dark:bg-gray-900 text-gray-600 placeholder-gray-600 dark:placeholder-gray-300 focus:outline-none"
                   />
@@ -453,6 +482,30 @@ const Navbar = ({ totalItems }) => {
                   </svg>
                 </button>
               </div>
+              <div className="mt-6 overflow-visible p-4">
+                {errorMsg && <p>{errorMsg}</p>}
+                <ul className="flex flex-col space-y-6">
+                  {searchItems?.map((item) => (
+                    <div key={item.id}>
+                      <li>
+                        <div className="flex">
+                          <a href={`/product-details/${item.id}`}>
+                            <h1>{item.name}</h1>
+                          </a>
+                          <img
+                            className="absolute right-1"
+                            width="40px"
+                            src={item.image.url}
+                            alt="imtg"
+                          />
+                        </div>
+                      </li>
+                    </div>
+                  ))}
+                  <hr />
+                </ul>
+              </div>
+
               <div className="mt-6 p-4">
                 <ul className="flex flex-col space-y-6">
                   <li>
@@ -595,7 +648,7 @@ const Navbar = ({ totalItems }) => {
                       className="dark:text-white text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-gray-800 hover:underline"
                     >
                       <div>
-                        <span className="absolute bottom-28 px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
+                        <span className="absolute mb-32 px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">
                           {totalItems}
                         </span>
                         <svg

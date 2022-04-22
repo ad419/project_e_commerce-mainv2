@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "../../lib/commerce";
+import { SpinnerCircularSplit } from "spinners-react";
 
 const Featured = () => {
   const [product, setProduct] = useState({});
@@ -21,6 +22,14 @@ const Featured = () => {
   useEffect(() => {
     fetchProduct();
   }, []);
+
+  if (!product.name) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <SpinnerCircularSplit />
+      </div>
+    );
+  }
 
   return (
     <>

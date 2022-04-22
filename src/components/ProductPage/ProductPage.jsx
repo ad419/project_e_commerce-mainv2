@@ -184,12 +184,12 @@ const ProductPage = ({ onAddToCart }) => {
 
           {/* <!-- Preview Images Div For larger Screen--> */}
 
-          <div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-9 sm:gap-6 gap-5">
-            <div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+          <div className=" w-full sm:w-96 md:w-8/12  lg:w-7/12 lg:h-96 flex lg:flex-row flex-col lg:gap-9 sm:gap-6 gap-5">
+            <div className=" w-full lg:w-8/12 bg-gray-100 lg:h-96 flex justify-center items-center">
               <AwesomeSlider>
                 {product.assets.map((asset) => (
-                  <div>
-                    <img src={asset.url} alt="oke" />
+                  <div key={asset.id}>
+                    <img className="lg:h-96" src={asset.url} alt="oke" />
                   </div>
                 ))}
               </AwesomeSlider>

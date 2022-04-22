@@ -3,6 +3,10 @@ import React from "react";
 import Products from "../Products/Products";
 
 const BestSeller = ({ products, onAddToCart }) => {
+  if (!products) {
+    return "loading";
+  }
+
   return (
     <div>
       <div className="pb-16">

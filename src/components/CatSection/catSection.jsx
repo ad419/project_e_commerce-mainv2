@@ -38,7 +38,7 @@ const CatSection = () => {
                       <img
                         className="object-center object-cover h-full w-full"
                         src={category.assets[0]?.url}
-                        alt="girl-image"
+                        alt="what"
                       />
                     </a>
                     <a

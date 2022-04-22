@@ -15,6 +15,7 @@ const Home = ({ products, onAddToCart }) => {
           Best Seller Products
         </p>
       </center>
+
       <Featured />
       <CatSection />
       <footer>

@@ -8,7 +8,6 @@ import useStyles from "./styles";
 const Desktops = ({ onAddToCart }) => {
   const [desktops, setDesktops] = useState({});
   const categoryId = "cat_eN1ql9xnp5z3ym";
-  const classes = useStyles();
 
   const fetchDesktops = async () => {
     const result = await commerce.products.list({
