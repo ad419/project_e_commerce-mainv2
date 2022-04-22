@@ -82,55 +82,56 @@ const App = () => {
   console.log(products);
 
   return (
-    <Router>
+    <>
       <Navbar totalItems={cart.total_items} />
-
-      <Switch>
-        <Route exact path="/">
-          <Home
-            cart={cart}
-            products={products}
-            onAddToCart={handleAddToCart}
-            handleUpdateCartQty
-          />
-        </Route>
-        <Route exact path="/cart">
-          <Cart
-            cart={cart}
-            onUpdateCartQty={handleUpdateCartQty}
-            onRemoveFromCart={handleRemoveFromCart}
-            onEmptyCart={handleEmptyCart}
-          />
-        </Route>
-        <Route path="/checkout" exact>
-          <Checkout
-            cart={cart}
-            order={order}
-            onCaptureCheckout={handleCaptureCheckout}
-            error={errorMessage}
-          />
-        </Route>
-        <Route path="/product-details/:id">
-          <ProductPage onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/cat_LvJjoP6Bple0nO">
-          <LaptopPage onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/cat_VKXmwDbAX5rgDA">
-          <HoodiesPage onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/cat_eN1ql9xnp5z3ym">
-          <DesktopPage onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/cat_gnZO5kZ06o7MNq">
-          <Accesors onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/cat_8XO3wpAWxoYAzQ">
-          <SneakersPage onAddToCart={handleAddToCart} />
-        </Route>
-        <Route path="/category/:id"></Route>
-      </Switch>
-    </Router>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home
+              cart={cart}
+              products={products}
+              onAddToCart={handleAddToCart}
+              handleUpdateCartQty
+            />
+          </Route>
+          <Route exact path="/cart">
+            <Cart
+              cart={cart}
+              onUpdateCartQty={handleUpdateCartQty}
+              onRemoveFromCart={handleRemoveFromCart}
+              onEmptyCart={handleEmptyCart}
+            />
+          </Route>
+          <Route path="/checkout" exact>
+            <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMessage}
+            />
+          </Route>
+          <Route path="/product-details/:id">
+            <ProductPage onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/cat_LvJjoP6Bple0nO">
+            <LaptopPage onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/cat_VKXmwDbAX5rgDA">
+            <HoodiesPage onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/cat_eN1ql9xnp5z3ym">
+            <DesktopPage onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/cat_gnZO5kZ06o7MNq">
+            <Accesors onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/cat_8XO3wpAWxoYAzQ">
+            <SneakersPage onAddToCart={handleAddToCart} />
+          </Route>
+          <Route path="/category/:id"></Route>
+        </Switch>
+      </Router>
+    </>
   );
 };
 

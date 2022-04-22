@@ -4,6 +4,7 @@ import SearchBar from "../../utils/SearchBar";
 import { FiSearch } from "react-icons/fi";
 import { commerce } from "../../lib/commerce";
 import { AiOutlineClose } from "react-icons/ai";
+import { SpinnerCircularSplit } from "spinners-react";
 
 const Navbar = ({ totalItems }) => {
   const [searchInput] = useState(true);
@@ -13,6 +14,7 @@ const Navbar = ({ totalItems }) => {
   const [keyword, setKeyword] = useState("");
   const [searchItems, setSearchItems] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
+  const [showResults, setShowResults] = useState(false);
 
   const fetchSearchItems = async () => {
     const { data } = await commerce.products.list({ query: keyword });
@@ -22,6 +24,7 @@ const Navbar = ({ totalItems }) => {
     }
 
     setSearchItems(data);
+    setShowResults(true);
   };
 
   const handleInputChange = (event) => {
@@ -242,7 +245,7 @@ const Navbar = ({ totalItems }) => {
                     <div className={`${showSearch ? "flex" : "hidden"}`}>
                       <div className="flex space-x-2">
                         <input
-                          className="px-2 text-lg rounded-full"
+                          className="px-2 text-lg focus:outline-none focus:ring focus:ring-yellow-400 rounded-lg"
                           onChange={handleInputChange}
                           placeholder="search any product"
                           type="text"
@@ -251,47 +254,48 @@ const Navbar = ({ totalItems }) => {
                           <FiSearch size={26} />
                         </button>
                         <div>
-                          <button onClick={() => setShowSearch(false)}>
+                          <button
+                            onClick={() => {
+                              setShowSearch(false);
+                              setShowResults(false);
+                            }}
+                          >
                             <AiOutlineClose className="mt-1" size={26} />
                           </button>
                         </div>
                       </div>
                     </div>
-                    <button
-                      aria-label="go to cart"
-                      className="text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-gray-800"
-                    >
-                      <svg
-                        className="fill-stroke"
-                        width={26}
-                        height={26}
-                        viewBox="0 0 26 26"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5 1L1 5.8V22.6C1 23.2365 1.28095 23.847 1.78105 24.2971C2.28115 24.7471 2.95942 25 3.66667 25H22.3333C23.0406 25 23.7189 24.7471 24.219 24.2971C24.719 23.847 25 23.2365 25 22.6V5.8L21 1H5Z"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M1 5.7998H25"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <path
-                          d="M18.3346 10.6001C18.3346 11.8731 17.7727 13.094 16.7725 13.9942C15.7723 14.8944 14.4158 15.4001 13.0013 15.4001C11.5868 15.4001 10.2303 14.8944 9.23007 13.9942C8.22987 13.094 7.66797 11.8731 7.66797 10.6001"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
+                  </div>
+                  <div className={`${showResults ? "block" : "hidden"}`}>
+                    <div className="absolute z-10 bg-white p-3 left-1/2 transform -translate-x-1/2 mt-10 px-2 w-screen max-w-md sm:px-0 lg:max-w-3xl">
+                      <button onClick={() => setShowResults(false)}>
+                        <AiOutlineClose className="" size={26} />
+                      </button>
+                      <center>
+                        {errorMsg && <p>{errorMsg}</p>}
+
+                        <ul className="flex flex-col space-y-6">
+                          {searchItems?.map((item) => (
+                            <div key={item.id}>
+                              <li>
+                                <div className="flex">
+                                  <a href={`/product-details/${item.id}`}>
+                                    <h1>{item.name}</h1>
+                                  </a>
+                                  <img
+                                    className="absolute right-1"
+                                    width="40px"
+                                    src={item.image.url}
+                                    alt="imtg"
+                                  />
+                                </div>
+                              </li>
+                            </div>
+                          ))}
+                          <hr />
+                        </ul>
+                      </center>
+                    </div>
                   </div>
                   <div className="flex lg:hidden">
                     <button
@@ -491,18 +495,19 @@ const Navbar = ({ totalItems }) => {
                         <div className="flex">
                           <a href={`/product-details/${item.id}`}>
                             <h1>{item.name}</h1>
+
+                            <img
+                              className="absolute right-1"
+                              width="40px"
+                              src={item.image.url}
+                              alt="imtg"
+                            />
                           </a>
-                          <img
-                            className="absolute right-1"
-                            width="40px"
-                            src={item.image.url}
-                            alt="imtg"
-                          />
+                          <a href=""></a>
                         </div>
                       </li>
                     </div>
                   ))}
-                  <hr />
                 </ul>
               </div>
 
