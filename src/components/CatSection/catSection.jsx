@@ -28,11 +28,11 @@ const CatSection = () => {
                   Shop By Category
                 </h1>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 md:gap-x-8 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 lg:gap-y-5 md:gap-x-8 w-full">
                 {categories.map((category) => (
                   <div
                     key={category.id}
-                    className="relative group flex justify-center items-center h-full w-full"
+                    className="relative hover:scale-110 duration-300 transform-gpu bg-gray-100 p-4 rounded-lg group flex justify-center items-center h-full w-full"
                   >
                     <a href={`/category/${category.id}`}>
                       <img
@@ -43,11 +43,10 @@ const CatSection = () => {
                     </a>
                     <a
                       href={`/category/${category.id}`}
-                      className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 p-3 w-36 bg-white"
+                      className="focus:outline-none flex rounded justify-center focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 bottom-4 z-10 absolute text-base font-medium leading-none text-gray-800 p-3 w-42 bg-white"
                     >
                       {category.name}
                     </a>
-                    <div className="absolute opacity-0 group-hover:opacity-100 transition duration-500 bottom-3 py-6 z-0 px-20 w-36 bg-white bg-opacity-50" />
                   </div>
                 ))}
               </div>
