@@ -31,14 +31,24 @@ const Accesories = ({ onAddToCart }) => {
 
   return (
     <>
-      <div className={classes.toolbar} />
-      <Grid container justify="center" spacing={4}>
-        {accesories.map((accesor) => (
-          <div key={accesor.id}>
-            <AccesorCard onAddToCart={onAddToCart} accesor={accesor} />
-          </div>
-        ))}
-      </Grid>
+      <main style={{
+        height: "100vh"
+      }} className={classes.content}>
+        <div className={classes.toolbar} />
+        <center>
+          <p className="text-4xl lg:text-5xl font-semibold leading-9 text-center text-gray-800">
+            Browse Gaming Accesories Category
+          </p>
+        </center>
+        <br /><br /><br />
+        <Grid container justify="center" spacing={1}>
+          {accesories.map((accesor) => (
+            <Grid key={accesor.id} item xs={12} sm={6} md={4} lg={3}>
+              <AccesorCard onAddToCart={onAddToCart} accesor={accesor} />
+            </Grid>
+          ))}
+        </Grid>
+      </main>
     </>
   );
 };

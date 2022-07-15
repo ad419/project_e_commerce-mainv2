@@ -16,6 +16,8 @@ const Desktops = ({ onAddToCart }) => {
     setDesktops(result.data);
   };
 
+  const classes = useStyles()
+
   useEffect(() => fetchDesktops(), []);
 
   if (!desktops.length)
@@ -28,13 +30,30 @@ const Desktops = ({ onAddToCart }) => {
     );
 
   return (
-    <Grid style={{ marginTop: "40px" }} container justify="center" spacing={4}>
-      {desktops.map((desktop) => (
-        <div key={desktop.id}>
-          <DeskCard onAddToCart={onAddToCart} desktop={desktop} />
-        </div>
-      ))}
-    </Grid>
+    <main style={{
+      height: "100vh"
+    }} className={classes.content}>
+      <div className={classes.toolbar} />
+      <center>
+        <p className="text-4xl lg:text-5xl font-semibold leading-9 text-center text-gray-800">
+          Gaming Pc Categories
+        </p>
+      </center>
+      <Grid
+        style={{ marginTop: "40px" }}
+        container
+        justify="center"
+        spacing={4}
+      >
+        {desktops.map((desktop) => (
+          <Grid key={desktop.id} item xs={12} sm={6} md={4} lg={3}>
+            <center>
+              <DeskCard onAddToCart={onAddToCart} desktop={desktop} />
+            </center>
+          </Grid>
+        ))}
+      </Grid>
+    </main>
   );
 };
 
