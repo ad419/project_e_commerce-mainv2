@@ -28,7 +28,7 @@ const CatSection = () => {
                   Shop By Category
                 </h1>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 lg:gap-y-5 md:gap-x-8 w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-4 gap-y-5 md:gap-x-8 w-full">
                 {categories.map((category) => (
                   <div
                     key={category.id}

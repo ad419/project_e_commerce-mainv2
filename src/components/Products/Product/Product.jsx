@@ -26,7 +26,7 @@ const Product = ({ product, onAddToCart }) => {
           </a>
          <br />
           <div class="flex justify-between items-center">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">
+            <span class="text-2xl font-bold text-gray-900 dark:text-white">
               ${product.price.formatted}
             </span>
             <button
